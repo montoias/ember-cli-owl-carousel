@@ -21,13 +21,17 @@ export default Component.extend({
   carouselOptions: {},
 
   onInitialized() {},
+  onDragStart() {},
+  onDragEnd() {},
 
   didInsertElement() {
     this._super(...arguments);
 
     run.scheduleOnce('afterRender', this, () => {
       this.set('carousel', this.$());
-      this.get('carousel').on('initialized.owl.carousel', () => this.get('onInitialized')());
+      this.get('carousel').on('initialized.owl.carousel', this.get('onInitialized').bind(this));
+      this.get('carousel').on('drag.owl.carousel', this.get('onDragStart').bind(this));
+      this.get('carousel').on('dragged.owl.carousel', this.get('onDragEnd').bind(this));
 
       this.get('carousel').owlCarousel({
         ...this.getProperties('loop', 'dots', 'dotsEach', 'items', 'autoWidth', 'margin', 'responsive', 'center'),
