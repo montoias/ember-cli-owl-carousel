@@ -1,5 +1,44 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<h1>Display items.</h1>
+
+<div class="items">
+  {{#owl-carousel}}
+    {{#each model.options as |option|}}
+      <div class="item">{{option}}</div>
+    {{/each}}
+  {{/owl-carousel}}
+</div>
+
+<h1>But you can pass it any other amount. (e.g 1)</h1>
+
+{{#owl-carousel items=1}}
+  {{#each model.options as |option|}}
+    <div class="item">{{option}}</div>
+  {{/each}}
+{{/owl-carousel}}
+
+<h1>Display dots</h1>
+
+{{#owl-carousel dots=true}}
+  {{#each model.options as |option|}}
+    <div class="item">{{option}}</div>
+  {{/each}}
+{{/owl-carousel}}
+
+<h1>Display dots each</h1>
+
+{{#owl-carousel dots=true dotsEach=true}}
+  {{#each model.options as |option|}}
+    <div class="item">{{option}}</div>
+  {{/each}}
+{{/owl-carousel}}
+
+<h1>Display loop</h1>
+
+{{#owl-carousel loop=true}}
+  {{#each model.options as |option|}}
+    <div class="item">{{option}}</div>
+  {{/each}}
+{{/owl-carousel}}
+
 
 {{outlet}}

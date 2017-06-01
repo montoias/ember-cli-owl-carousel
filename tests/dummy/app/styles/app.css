@@ -1,0 +1,19 @@
+body {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.owl-carousel {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background-color: red;
+  border-radius: 10px;
+}
+
