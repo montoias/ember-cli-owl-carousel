@@ -23,15 +23,23 @@ export default Component.extend({
   onInitialized() {},
   onDragStart() {},
   onDragEnd() {},
+  onWillChange() {},
+  onDidChange() {},
 
   didInsertElement() {
     this._super(...arguments);
 
     run.scheduleOnce('afterRender', this, () => {
+      this.$.on('click', '.owl-item', function() {
+        console.log('hm', Ember.$(this).index());
+      });
+
       this.set('carousel', this.$());
       this.get('carousel').on('initialized.owl.carousel', this.get('onInitialized').bind(this));
       this.get('carousel').on('drag.owl.carousel', this.get('onDragStart').bind(this));
       this.get('carousel').on('dragged.owl.carousel', this.get('onDragEnd').bind(this));
+      this.get('carousel').on('change.owl.carousel', this.get('onWillChange').bind(this));
+      this.get('carousel').on('changed.owl.carousel', this.get('onDidChange').bind(this));
 
       this.get('carousel').owlCarousel({
         ...this.getProperties('loop', 'dots', 'dotsEach', 'items', 'autoWidth', 'margin', 'responsive', 'center'),
