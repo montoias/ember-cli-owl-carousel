@@ -18,14 +18,13 @@ export default Component.extend({
   margin: 10,
   responsive: {},
   currentIndex: null,
+  carouselOptions: {},
 
   onCurrentIndexChange: observer('currentIndex', function() {
     if (this.get('currentIndex')) {
       this.get('carousel').trigger('to.owl.carousel', this.get('currentIndex'));
     }
   }),
-
-  carouselOptions: {},
 
   onInitialized() {},
   onDragStart() {},
@@ -49,10 +48,5 @@ export default Component.extend({
         ...this.get('carouselOptions')
       });
     });
-  },
-
-  keyUp(e) {
-    console.log(e);
-    alert(`You pressed key code ${  e.keyCode}`);
   }
 });
