@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/owl-carousel';
 
-const { Component, run } = Ember;
+const { Component, run, observer } = Ember;
 
 export default Component.extend({
   layout,
@@ -17,6 +17,13 @@ export default Component.extend({
   items: 3,
   margin: 10,
   responsive: {},
+  currentIndex: null,
+
+  onCurrentIndexChange: observer('currentIndex', function() {
+    if (this.get('currentIndex')) {
+      this.get('carousel').trigger('to.owl.carousel', this.get('currentIndex'));
+    }
+  }),
 
   carouselOptions: {},
 
@@ -30,10 +37,6 @@ export default Component.extend({
     this._super(...arguments);
 
     run.scheduleOnce('afterRender', this, () => {
-      this.$.on('click', '.owl-item', function() {
-        console.log('hm', Ember.$(this).index());
-      });
-
       this.set('carousel', this.$());
       this.get('carousel').on('initialized.owl.carousel', this.get('onInitialized').bind(this));
       this.get('carousel').on('drag.owl.carousel', this.get('onDragStart').bind(this));
@@ -46,5 +49,10 @@ export default Component.extend({
         ...this.get('carouselOptions')
       });
     });
+  },
+
+  keyUp(e) {
+    console.log(e);
+    alert(`You pressed key code ${  e.keyCode}`);
   }
 });
