@@ -17,7 +17,7 @@ export default Component.extend({
   items: 3,
   margin: 10,
   responsive: {},
-  startingIndex: null,
+  startIndex: null,
   currentIndex: null,
   carouselOptions: {},
 
