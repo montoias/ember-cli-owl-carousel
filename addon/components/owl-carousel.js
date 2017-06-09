@@ -17,6 +17,7 @@ export default Component.extend({
   items: 3,
   margin: 10,
   responsive: {},
+  startingIndex: null,
   currentIndex: null,
   carouselOptions: {},
 
@@ -26,7 +27,12 @@ export default Component.extend({
     }
   }),
 
-  onInitialized() {},
+  onInitialized() {
+    if (this.get('startIndex')) {
+      this.get('carousel').trigger('to.owl.carousel', this.get('startIndex'));
+      this.set('currentIndex', this.get('startIndex'));
+    }
+  },
   onDragStart() {},
   onDragEnd() {},
   onWillChange() {},
