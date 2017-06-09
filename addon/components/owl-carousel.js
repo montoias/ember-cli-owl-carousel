@@ -29,7 +29,7 @@ export default Component.extend({
 
   onInitialized() {
     if (this.get('startIndex')) {
-      this.set('currentIndex', this.get('startIndex'));
+      run.later(() => this.set('currentIndex', this.get('startIndex')), 0);
     }
   },
   onDragStart() {},
