@@ -29,7 +29,6 @@ export default Component.extend({
 
   onInitialized() {
     if (this.get('startIndex')) {
-      this.get('carousel').trigger('to.owl.carousel', this.get('startIndex'));
       this.set('currentIndex', this.get('startIndex'));
     }
   },
