@@ -17,6 +17,7 @@ export default Component.extend({
   items: 3,
   margin: 10,
   responsive: {},
+  startIndex: null,
   currentIndex: null,
   carouselOptions: {},
 
@@ -26,7 +27,11 @@ export default Component.extend({
     }
   }),
 
-  onInitialized() {},
+  onInitialized() {
+    if (this.get('startIndex')) {
+      run.later(() => this.set('currentIndex', this.get('startIndex')), 0);
+    }
+  },
   onDragStart() {},
   onDragEnd() {},
   onWillChange() {},
