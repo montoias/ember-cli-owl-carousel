@@ -22,9 +22,7 @@ export default Component.extend({
   carouselOptions: {},
 
   onCurrentIndexChange: observer('currentIndex', function() {
-    if (this.get('currentIndex')) {
-      this.get('carousel').trigger('to.owl.carousel', this.get('currentIndex'));
-    }
+    this.get('carousel').trigger('to.owl.carousel', this.get('currentIndex'));
   }),
 
   onInitialized() {
